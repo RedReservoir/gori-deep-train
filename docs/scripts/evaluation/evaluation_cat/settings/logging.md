@@ -1,4 +1,4 @@
-## Logging
+# Logging
 
 The `settings/logging.json` JSON file defines logging settings. Schema:
 

@@ -1,4 +1,4 @@
-## Groups
+# Groups
 
 The `settings/groups.json` JSON file defines dataset-split groups. A dataset-split group is just a list of dataset and split tuples, the predictions of which to group together for generating plots.
 

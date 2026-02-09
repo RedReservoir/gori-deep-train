@@ -1,4 +1,4 @@
-# Training Pipeline
+# Experiment pipeline: `training_pipeline`
 
 The `training_pipeline.py` script is the main script for training models in the `gori-deep-train` project. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files.
 

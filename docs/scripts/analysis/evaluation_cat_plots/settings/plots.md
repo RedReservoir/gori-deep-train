@@ -1,4 +1,4 @@
-## Plots
+# Plots
 
 The `settings/plots.json` JSON file defines plot settings. Plot settings must be provided for confusion matrix plots, confusion matrix aggregates plots, and confusion matrix metric plots. Multiple configuration sets
 

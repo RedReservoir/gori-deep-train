@@ -1,4 +1,4 @@
-## Groups
+# Groups
 
 The `settings/groups.json` JSON file defines loss groups. A loss group is just a list of loss register keys to group together as a single loss when generating plots. The total loss of the loss group is the addition of all associated losses.
 

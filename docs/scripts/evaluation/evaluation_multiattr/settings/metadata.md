@@ -1,4 +1,4 @@
-## Metadata
+# Metadata
 
 The `settings/metadata.json` JSON file defines category metadata settings. Schema:
 

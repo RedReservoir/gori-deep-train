@@ -1,4 +1,4 @@
-## Metrics
+# Metrics
 
 The `settings/metrics.json` JSON file defines confusion matrix metrics. 
 

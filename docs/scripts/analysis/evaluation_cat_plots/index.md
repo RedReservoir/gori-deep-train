@@ -1,4 +1,4 @@
-# evaluation_cat_plots
+# Analysis pipeline: `evaluation_cat_plots`
 
 The `evaluation_cat_plots.py` script is for generating category confusion matrix, aggregate and metric plots of an `evaluation_cat` evaluation run in the `gori-deep-train` project.
 

@@ -1,4 +1,4 @@
-## Dataloaders
+# Dataloaders
 
 The `pymodules/dataloaders` directory contains multiple Python files with name `<dataset_name>.py`, where `<dataset_name>` is the name of the dataset they are defining dataloaders for (see the `pymodules/datasets.md` documentation file). When imported, each of these files must create the following variables:
 

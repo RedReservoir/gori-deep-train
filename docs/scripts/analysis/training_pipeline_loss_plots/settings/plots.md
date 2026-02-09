@@ -1,4 +1,4 @@
-## Plots
+# Plots
 
 The `settings/plots.json` JSON file defines plot settings. Plot settings must be provided for the total loss plot, the specific loss plots, and the group loss plots.
 

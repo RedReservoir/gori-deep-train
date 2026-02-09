@@ -1,4 +1,4 @@
-# evaluation_multiattr_plots
+# Analysis pipeline: `evaluation_multiattr_plots`
 
 The `evaluation_multiattr_plots.py` script is for generating multi-attribute confusion matrix aggregate and metric plots of an `evaluation_multiattr` evaluation run in the `gori-deep-train` project.
 

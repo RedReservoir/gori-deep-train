@@ -1,4 +1,4 @@
-# evaluation_cat
+# Evaluation pipeline: `evaluation_cat`
 
 The `evaluation_cat.py` script is for evaluating models on a classification task in the `gori-deep-train` project. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files. Generic classes can be defined as metadata files.
 

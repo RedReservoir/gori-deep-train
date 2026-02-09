@@ -1,4 +1,4 @@
-# training_pipeline_loss_plots
+# Analysis pipeline: `training_pipeline_loss_plots`
 
 The `training_pipeline_loss_plots.py` script is for generating loss plots of an experiment run in the `gori-deep-train` project. The status of the experiment run is not relevant, plots can be generated mid-training.
 

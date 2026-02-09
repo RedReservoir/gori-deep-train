@@ -1,4 +1,4 @@
-# evaluation_multiattr
+# Evaluation pipeline: `evaluation_multiattr`
 
 The `evaluation_multiattr.py` script is for evaluating models on a binary attribute prediction task in the `gori-deep-train` project. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files. Generic multi-attributes can be defined as metadata files.
 
