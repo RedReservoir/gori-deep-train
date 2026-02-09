@@ -1,2 +1,4 @@
 # gori-deep-train
-Generic deep learning pipelines project
+
+An open-source project providing generic deep learning training, evaluation and analysis pipelines based on PyTorch.
+
