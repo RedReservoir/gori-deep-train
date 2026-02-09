@@ -5,7 +5,3 @@ repo_name: gori-deep-train
 plugins:
   - search
   - awesome-pages
-
-nav:
-  - Home: index.md
-  - Overview: overview.md
