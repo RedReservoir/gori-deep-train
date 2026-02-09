@@ -2,9 +2,7 @@
 
 The `evaluation_cat_plots.py` script is for generating category confusion matrix, aggregate and metric plots of an `evaluation_cat` evaluation run in the `gori-deep-train` project.
 
----
-
-### How to Run
+## How to Run
 
 Below is an example bash command to run the `evaluation_cat_plots.py` script:
 
@@ -26,9 +24,7 @@ Make sure that the following directories exist prior to run this command:
 
 Resource consumption is low when running this script, and no GPUs are used.
 
----
-
-### Analaysis Settings
+## Analaysis Settings
 
 The analysis settings directory must contain the following settings files:
 
@@ -39,9 +35,7 @@ The analysis settings directory must contain the following settings files:
 └── plots.json
 ```
 
----
-
-### Analysis Results
+## Analysis Results
 
 The analysis results directory will have the following contents:
 

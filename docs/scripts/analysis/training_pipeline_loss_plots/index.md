@@ -2,9 +2,7 @@
 
 The `training_pipeline_loss_plots.py` script is for generating loss plots of an experiment run in the `gori-deep-train` project. The status of the experiment run is not relevant, plots can be generated mid-training.
 
----
-
-### How to Run
+## How to Run
 
 Below is an example bash command to run the `training_pipeline_loss_plots.py` script:
 
@@ -26,9 +24,7 @@ Make sure that the following directories exist prior to run this command:
 
 Resource consumption is low when running this script, and no GPUs are used.
 
----
-
-### Analaysis Settings
+## Analaysis Settings
 
 The analysis settings directory must contain the following settings files:
 
@@ -38,9 +34,7 @@ The analysis settings directory must contain the following settings files:
 └── plots.json
 ```
 
----
-
-### Analysis Results
+## Analysis Results
 
 The analysis results directory will have the following contents:
 

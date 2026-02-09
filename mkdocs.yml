@@ -6,8 +6,6 @@ plugins:
   - search
   - awesome-pages
 
-# nav:
-#   - Home: index.md
-#   - Overview: overview.md
-#   - Getting Started: getting-started.md
-#   - Scripts: scripts/index.md
+nav:
+  - Home: index.md
+  - Overview: overview.md

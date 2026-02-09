@@ -2,9 +2,7 @@
 
 The `evaluation_multiattr.py` script is for evaluating models on a binary attribute prediction task in the `gori-deep-train` project. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files. Generic multi-attributes can be defined as metadata files.
 
----
-
-### How to Run
+## How to Run
 
 Below is an example bash command to run the `evaluation_multiattr.py` script, which automatically balances prediction workload amongst all GPUs of the host machine:
 
@@ -41,9 +39,7 @@ It is also recommended to set these environment variables so that the machine's 
   - `VECLIB_MAXIMUM_THREADS`
   - `NUMEXPR_NUM_THREADS`
 
----
-
-### Evaluation Settings
+## Evaluation Settings
 
 The evaluation settings directory must have the following contents:
 
@@ -66,9 +62,7 @@ The `settings` directory contains JSON files with more settings to control the e
 
 Please carefully read the documentation for each of the `pymodules` and `settings`, as many of those files are not independent, and often must contain matching values.
 
----
-
-### Evaluation Results
+## Evaluation Results
 
 The evaluation results directory will have the following contents:
 
