@@ -1,7 +1,9 @@
 site_name: Gori Deep Train
+repo_url: https://github.com/RedReservoir/gori-deep-train
+repo_name: gori-deep-train
 
 nav:
   - Home: index.md
-  # - Getting Started: getting-started.md
+  - Getting Started: getting-started.md
   # - Configuration: configuration.md
   # - FAQ: faq.md
