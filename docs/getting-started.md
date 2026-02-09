@@ -37,17 +37,14 @@ The `gori-deep-train` data directory must contain the following subdirectories:
 └── module_ckps
 ```
 
-  - `metadata`: Metadata files.
+  - `metadata`: Metadata files for metadata classes.
   - `module_ckps`: Miscellaneous module checkpoints.
-
   - `evaluation_logs`: Log files for evaluation pipelines.
   - `evaluation_results`: Result files for evaluation pipelines.
   - `evaluation_settings`: Setting files for evaluation pipelines.
-
   - `experiment_logs`: Log files for training pipelines.
   - `experiment_results`: Result files for training pipelines.
   - `experiment_settings`: Setting files for training pipelines.
   - `experiment_torchelastic_error_files`: Torchelastic error files for training pipelines.
-  
   - `analysis_results`: Result files for analysis pipelines.
   - `analysis_settings`: Setting files for analysis pipelines.

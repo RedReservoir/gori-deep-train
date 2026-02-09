@@ -4,6 +4,5 @@ repo_name: gori-deep-train
 
 nav:
   - Home: index.md
+  - Overview: overview.md
   - Getting Started: getting-started.md
-  # - Configuration: configuration.md
-  # - FAQ: faq.md
