@@ -1,4 +1,4 @@
-## Loss Registers
+# Loss Registers
 
 The `settings/loss_registers.json` JSON file defines the loss registers used during the training pipeline. Schema:
 
@@ -11,7 +11,7 @@ The `settings/loss_registers.json` JSON file defines the loss registers used dur
 }
 ```
 
-  - `loss_reg_key_list`: A list of loss register names. One `yadscore.utils.loss_register.LossRegister` object will be created for each loss register name.
+  - `loss_reg_key_list`: A list of loss register names. One `gorideep.utils.loss_register.LossRegister` object will be created for each loss register name.
 
 During the training pipeline, the loss registers listed in this configuration file will be created and stored in the `loss_reg_pool` variable, which contains both `train` and `eval` subdicts.
 

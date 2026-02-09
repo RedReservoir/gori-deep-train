@@ -1,8 +1,8 @@
-## Data Counters
+# Data Counters
 
 The `pymodules/data_counters` directory contains multiple Python files with name `<data_counter_name>.py`, where `<data_counter_name>` is the name of the data counter they define. When imported, each of these files must create the following variables:
 
-  - `data_counter`: An instance of a subclass of `yadscore.data_counters.base.BaseDataCounter`.
+  - `data_counter`: An instance of a subclass of `gorideep.data_counters.base.BaseDataCounter`.
   - `dataset_name_list`: A list of dataset names to iterate through for counting.
 
 During the training pipeline, the data counters defined in these Python modules are stored in the `data_counter_pool` variable.

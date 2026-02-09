@@ -1,4 +1,4 @@
-## Modules
+# Modules
 
 The `pymodules/modules` directory contains multiple Python files with name `<module_name>.py`, where `<module_name>` is the name of the module they define. When imported, each of these files must create the following variables:
 

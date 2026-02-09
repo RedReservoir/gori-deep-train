@@ -1,8 +1,8 @@
-## Module Transforms
+# Module Transforms
 
 The `pymodules/module_transforms` directory contains multiple Python files with name `<dataset_name>.py`, where `<dataset_name>` is the name of the dataset they are defining module transforms for (see the `pymodules/datasets.md` documentation file). When imported, each of these files must create the following variables:
 
-  - `ModuleTransform`: A subclass of `yadscore.module_transforms.base.BaseModuleTransform`, which processes a data batch using the defined modules in order to generate losses. This class is instantiated during the training pipeline.
+  - `ModuleTransform`: A subclass of `gorideep.module_transforms.base.BaseModuleTransform`, which processes a data batch using the defined modules in order to generate losses. This class is instantiated during the training pipeline.
   - `loss_ten_reg_key_list`: A list of dicts, which defines which loss tensors from the data batch should be associated to which loss registers after passing through the module transform.
 
 During the training pipeline, the modules defined in these Python modules are stored in the `module_transforms_pool` variable. 

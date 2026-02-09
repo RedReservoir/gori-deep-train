@@ -1,4 +1,4 @@
-## Data Loading
+# Data Loading
 
 The `settings/data_loading.json` JSON file defines logging settings. Schema:
 

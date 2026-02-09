@@ -1,10 +1,10 @@
-## Optimizers and Schedulers
+# Optimizers and Schedulers
 
 The `pymodules/optim_sched` directory contains multiple Python diles with name `<optim_sched_name>.py`, where `<optim_sched_name>` is the name of the optimizer-scheduler pair they define. When imported, each of these files must create the following methods:
 
   - `create_optimizer`: A method that takes the `module_pool` as input and returns an optimizer object (an instance of a `torch.optim.Optimizer` subclass). All parameter groups passed to the optimizer must have an additional field called `"name"`.
 
-  - `create_scheduler`: A method that takes the previously created `optimizer` as input and returns a LR Scheduler object (an instance of a `yadscore.schedulers.base.BaseLRScheduler subclass).
+  - `create_scheduler`: A method that takes the previously created `optimizer` as input and returns a LR Scheduler object (an instance of a `gorideep.schedulers.base.BaseLRScheduler` subclass).
 
   - `scheduler_start_epoch`: The `start_epoch` value to pass to the LR scheduler during initialization.
 

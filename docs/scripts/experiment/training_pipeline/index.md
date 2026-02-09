@@ -1,10 +1,8 @@
-# training_pipeline
+# Training Pipeline
 
 The `training_pipeline.py` script is the main script for training models in the `gori-deep-train` project. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files.
 
---
-
-### How to Run
+## How to Run
 
 The `training_pipeline.py` script was written with `torchrun` usage in mind. Below is an example bash command to run this script, using 1 node and 4 processes per node (1 machine with 4 GPUs).
 
@@ -50,9 +48,7 @@ You can also set the `TORCHELASTIC_ERROR_FILE` environment variable, which will 
 
   - `${GORIDEEPSTYLE_DATA_HOME}/experiment_torchelastic_error_files/<experiment_name>`: Experiment torchelastic error files.
 
----
-
-### Experiment Settings
+## Experiment Settings
 
 The experiment settings directory must have the following contents:
 
@@ -81,9 +77,7 @@ The `settings` directory contains JSON files with more settings to control the t
 
 Please carefully read the documentation for each of the `pymodules` and `settings`, as many of those files are not independent, and often must contain matching values.
 
----
-
-### Experiment Results
+## Experiment Results
 
 The experiment settings directory will have the following contents:
 
