@@ -10,4 +10,4 @@ nav:
   - Home: index.md
   - Overview: overview.md
   - Getting Started: getting-started.md
-  - Scripts: scripts/
+  - Scripts: scripts/index.md
