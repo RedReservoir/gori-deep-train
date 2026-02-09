@@ -1,8 +1,8 @@
 # training_pipeline
 
-The `training_pipeline.py` script is the main script for training models in the `ya-deep-style` framework. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files.
+The `training_pipeline.py` script is the main script for training models in the `gori-deep-train` project. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files.
 
----
+--
 
 ### How to Run
 
@@ -13,7 +13,7 @@ torchrun \
   --nnodes=1 \
   --nproc-per-node=4 \
   --node_rank=0 \
-  --log-dir=${YADEEPSTYLE_DATA_HOME}/experiment_logs/<experiment_name> \
+  --log-dir=${GORIDEEPSTYLE_DATA_HOME}/experiment_logs/<experiment_name> \
   --redirects 3 \
   training_pipeline.py \
     <experiment_name>
@@ -21,12 +21,12 @@ torchrun \
 
 The result of running this script is the creation of the following directory:
 
-  - `${YADEEPSTYLE_DATA_HOME}/experiment_results/<experiment_name>`: Experiment results directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/experiment_results/<experiment_name>`: Experiment results directory.
 
 Make sure that the following directories exist prior to run this command:
 
-  - `${YADEEPSTYLE_DATA_HOME}/experiment_settings/<experiment_name>`: Experiment settings directory.
-  - `${YADEEPSTYLE_DATA_HOME}/experiment_logs/<experiment_name>`: Experiment logs directory
+  - `${GORIDEEPSTYLE_DATA_HOME}/experiment_settings/<experiment_name>`: Experiment settings directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/experiment_logs/<experiment_name>`: Experiment logs directory
 
 The `training_pipeline.py` script also accepts two (mutually exclusive) flags:
 
@@ -46,9 +46,9 @@ It is also recommended to set these environment variables so that the machine's 
   - `VECLIB_MAXIMUM_THREADS`
   - `NUMEXPR_NUM_THREADS`
 
-You can also set the `TORCHELASTIC_ERROR_FILE` environment variable, which will get uncaught exceptions and trace information to a file. Recommended path: `${YADEEPSTYLE_DATA_HOME}/experiment_torchelastic_error_files/<experiment_name>/error.json`. Again, make sure that the following directory exists:
+You can also set the `TORCHELASTIC_ERROR_FILE` environment variable, which will get uncaught exceptions and trace information to a file. Recommended path: `${GORIDEEPSTYLE_DATA_HOME}/experiment_torchelastic_error_files/<experiment_name>/error.json`. Again, make sure that the following directory exists:
 
-  - `${YADEEPSTYLE_DATA_HOME}/experiment_torchelastic_error_files/<experiment_name>`: Experiment torchelastic error files.
+  - `${GORIDEEPSTYLE_DATA_HOME}/experiment_torchelastic_error_files/<experiment_name>`: Experiment torchelastic error files.
 
 ---
 

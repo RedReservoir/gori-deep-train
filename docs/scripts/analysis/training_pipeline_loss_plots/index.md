@@ -1,6 +1,6 @@
 # training_pipeline_loss_plots
 
-The `training_pipeline_loss_plots.py` script is for generating loss plots of an experiment run in the `ya-deep-style` framework. The status of the experiment run is not relevant, plots can be generated mid-training.
+The `training_pipeline_loss_plots.py` script is for generating loss plots of an experiment run in the `gori-deep-train` project. The status of the experiment run is not relevant, plots can be generated mid-training.
 
 ---
 
@@ -17,12 +17,12 @@ python \
 
 The result of running this script is the creation of the following directory:
 
-  - `${YADEEPSTYLE_DATA_HOME}/analysis_results/<analysis_name>`: Analysis results directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/analysis_results/<analysis_name>`: Analysis results directory.
 
 Make sure that the following directories exist prior to run this command:
 
-  - `${YADEEPSTYLE_DATA_HOME}/analysis_settings/<analysis_name>`: Analysis settings directory.
-  - `${YADEEPSTYLE_DATA_HOME}/experiment_results/<experiment_name>`: Experiment results directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/analysis_settings/<analysis_name>`: Analysis settings directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/experiment_results/<experiment_name>`: Experiment results directory.
 
 Resource consumption is low when running this script, and no GPUs are used.
 

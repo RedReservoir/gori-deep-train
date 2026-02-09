@@ -1,6 +1,6 @@
 # evaluation_cat_plots
 
-The `evaluation_cat_plots.py` script is for generating category confusion matrix, aggregate and metric plots of an `evaluation_cat` evaluation run in the `ya-deep-style` framework.
+The `evaluation_cat_plots.py` script is for generating category confusion matrix, aggregate and metric plots of an `evaluation_cat` evaluation run in the `gori-deep-train` project.
 
 ---
 
@@ -17,12 +17,12 @@ python \
 
 The result of running this script is the creation of the following directory:
 
-  - `${YADEEPSTYLE_DATA_HOME}/analysis_results/<analysis_name>`: Analysis results directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/analysis_results/<analysis_name>`: Analysis results directory.
 
 Make sure that the following directories exist prior to run this command:
 
-  - `${YADEEPSTYLE_DATA_HOME}/analysis_settings/<analysis_name>`: Analysis settings directory.
-  - `${YADEEPSTYLE_DATA_HOME}/evaluation_results/<evaluation_name>`: Evaluation results directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/analysis_settings/<analysis_name>`: Analysis settings directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/evaluation_results/<evaluation_name>`: Evaluation results directory.
 
 Resource consumption is low when running this script, and no GPUs are used.
 

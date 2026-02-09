@@ -1,6 +1,6 @@
 # evaluation_multiattr
 
-The `evaluation_multiattr.py` script is for evaluating models on a binary attribute prediction task in the `ya-deep-style` framework. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files. Generic multi-attributes can be defined as metadata files.
+The `evaluation_multiattr.py` script is for evaluating models on a binary attribute prediction task in the `gori-deep-train` project. It is a generic pipeline that admits usage of multiple models, datasets and tasks by requiring the user to define these specific components in separate configuration files. Generic multi-attributes can be defined as metadata files.
 
 ---
 
@@ -16,12 +16,12 @@ python \
 
 The result of running this script is the creation of the following directory:
 
-  - `${YADEEPSTYLE_DATA_HOME}/evaluation_results/<evaluation_name>`: Evaluation results directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/evaluation_results/<evaluation_name>`: Evaluation results directory.
 
 Make sure that the following directories exist prior to run this command:
 
-  - `${YADEEPSTYLE_DATA_HOME}/evaluation_settings/<evaluation_name>`: Evaluation settings directory.
-  - `${YADEEPSTYLE_DATA_HOME}/evaluation_logs/<evaluation_name>`: Evaluation logs directory
+  - `${GORIDEEPSTYLE_DATA_HOME}/evaluation_settings/<evaluation_name>`: Evaluation settings directory.
+  - `${GORIDEEPSTYLE_DATA_HOME}/evaluation_logs/<evaluation_name>`: Evaluation logs directory
 
 The `evaluation_multiattr.py` script also accepts two (mutually exclusive) flags:
 
