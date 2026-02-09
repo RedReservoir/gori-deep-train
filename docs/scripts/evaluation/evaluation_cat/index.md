@@ -47,7 +47,7 @@ It is also recommended to set these environment variables so that the machine's 
 
 The evaluation settings directory must have the following contents:
 
-```
+```text
 .
 ├── pymodules
 │   ├── data_transforms
@@ -72,7 +72,7 @@ Please carefully read the documentation for each of the `pymodules` and `setting
 
 The evaluation results directory will have the following contents:
 
-```
+```text
 .
 ├── pymodules
 ├── settings

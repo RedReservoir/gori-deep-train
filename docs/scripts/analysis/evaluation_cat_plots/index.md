@@ -32,7 +32,7 @@ Resource consumption is low when running this script, and no GPUs are used.
 
 The analysis settings directory must contain the following settings files:
 
-```
+```text
 .
 ├── groups.json
 ├── metrics.json
@@ -45,7 +45,7 @@ The analysis settings directory must contain the following settings files:
 
 The analysis results directory will have the following contents:
 
-```
+```text
 .
 ├── data
 │   ├── cat_conf_mat_plots

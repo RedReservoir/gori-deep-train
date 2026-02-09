@@ -52,7 +52,7 @@ You can also set the `TORCHELASTIC_ERROR_FILE` environment variable, which will 
 
 The experiment settings directory must have the following contents:
 
-```
+```text
 .
 ├── pymodules
 │   ├── data_counters
@@ -81,7 +81,7 @@ Please carefully read the documentation for each of the `pymodules` and `setting
 
 The experiment settings directory will have the following contents:
 
-```
+```text
 .
 ├── pymodules
 ├── settings

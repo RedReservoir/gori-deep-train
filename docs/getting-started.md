@@ -9,7 +9,7 @@ The required dependencies for running any scripts from the `gori-deep-train` pro
 
 You can simply install them from their respective GitHub repositories:
 
-```
+```bash
 pip install git+https://github.com/RedReservoir/gori-py-utils
 pip install git+https://github.com/RedReservoir/gori-deep-train
 ```
@@ -22,7 +22,7 @@ The `gori-deep-train` project will read and write data from the `gori-deep-train
 
 The `gori-deep-train` data directory must contain the following subdirectories:
 
-```
+```text
 .
 ├── analysis_results
 ├── analysis_settings
