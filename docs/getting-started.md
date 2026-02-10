@@ -2,23 +2,14 @@
 
 ## Python dependencies
 
-The required dependencies for running any scripts from the `gori-deep-train` project are the following:
+The required dependencies for running any scripts from the `gori-deep-train` project are the following Python packages, along with their own dependencies:
 
-  - `gori-py-utils` Python package: Generic Python utilities for `gori` projects.
-  - `gori-deep-train-core` Python package: Core libraries for the `gori-deep-train` project.
-
-You can simply install them from their respective GitHub repositories:
-
-```bash
-pip install git+https://github.com/RedReservoir/gori-py-utils
-pip install git+https://github.com/RedReservoir/gori-deep-train
-```
-
-<font color="red">**WARNING**</font>: There are many other dependencies necessary for using this project, such as `numpy` and `torch`, which are not listed here.
+  - (`gori-py-utils`)[https://github.com/RedReservoir/gori-py-utils]
+  - (`gori-deep-train-core`)[https://github.com/RedReservoir/gori-deep-train-core]
 
 ## The `gori-deep-train` data directory
 
-The `gori-deep-train` project will read and write data from the `gori-deep-train` data directory. Set the `GORIDEEPTRAIN_DATA_HOME` environment variable to the path to this directory, which must exist in your local filesystem.
+The `gori-deep-train` project will read and write data from the `gori-deep-train` data directory. You must create this directory in your local filesystem, and also set the `GORIDEEPTRAIN_DATA_HOME` environment variable to the path to this directory.
 
 The `gori-deep-train` data directory must contain the following subdirectories:
 
