@@ -4,8 +4,8 @@
 
 The required dependencies for running any scripts from the `gori-deep-train` project are the following Python packages, along with their own dependencies:
 
-  - (`gori-py-utils`)[https://github.com/RedReservoir/gori-py-utils]
-  - (`gori-deep-train-core`)[https://github.com/RedReservoir/gori-deep-train-core]
+  - [`gori-py-utils`](https://github.com/RedReservoir/gori-py-utils)
+  - [`gori-deep-train-core`](https://github.com/RedReservoir/gori-deep-train-core)
 
 ## The `gori-deep-train` data directory
 
