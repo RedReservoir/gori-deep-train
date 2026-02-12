@@ -462,7 +462,7 @@ def training_loop(
     #
 
 
-    logger.info(goripy.gpu.info.sprint_device_memory_usage(device))   
+    logger.info(goripy.gpu.info.sprint_device_memory_usage_detail(device))   
 
 
 
@@ -670,7 +670,7 @@ def evaluation_loop(
     #
 
 
-    logger.info(goripy.gpu.info.sprint_device_memory_usage(device))   
+    logger.info(goripy.gpu.info.sprint_device_memory_usage_detail(device))   
 
 
 
