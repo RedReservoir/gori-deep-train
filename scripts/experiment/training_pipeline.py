@@ -891,12 +891,12 @@ def experiment_pipeline():
 
                 logger.info("Prepare experiment results settings")
 
-                ## Create experiment settings directory
+                ## Copy experiment settings to results
 
                 if os.path.exists(exp_results_settings_dirname): shutil.rmtree(exp_results_settings_dirname)
-                os.mkdir(exp_results_settings_dirname)
+                shutil.copytree(exp_settings_settings_dirname, exp_results_settings_dirname)
 
-                ## Copy experiment settings
+                ## Check experiment settings
                 
                 for settings_filename in [
                     "logging.json",
@@ -905,12 +905,9 @@ def experiment_pipeline():
                 ]:
                     
                     settings_src_full_filename = os.path.join(exp_settings_settings_dirname, settings_filename)
-                    settings_dst_full_filename = os.path.join(exp_results_settings_dirname, settings_filename)
 
                     if not os.path.exists(settings_src_full_filename):
                         raise ValueError("Missing settings file: {:s}".format(settings_src_full_filename))
-
-                    shutil.copyfile(settings_src_full_filename, settings_dst_full_filename)
 
                 ## Update experiment settings
 
@@ -936,12 +933,12 @@ def experiment_pipeline():
 
                 logger.info("Prepare experiment results pymodules")
 
-                ## Create experiment pymodules directory
+                ## Create experiment pymodules to results
 
                 if os.path.exists(exp_results_pymodules_dirname): shutil.rmtree(exp_results_pymodules_dirname)
-                os.mkdir(exp_results_pymodules_dirname)
+                shutil.copytree(exp_settings_pymodules_dirname, exp_results_pymodules_dirname)
 
-                ## Copy experiment pymodules
+                ## Check experiment pymodules
                 
                 for pymodules_dirname in [
                     "data_counters",
@@ -957,10 +954,21 @@ def experiment_pipeline():
                     pymodules_dst_full_dirname = os.path.join(exp_results_pymodules_dirname, pymodules_dirname)
 
                     if not os.path.exists(pymodules_src_full_dirname):
-                        raise ValueError("Missing pymodules directory: {:s}".format(settings_src_full_filename))
+                        raise ValueError("Missing pymodules directory: {:s}".format(pymodules_src_full_dirname))
                     
-                    shutil.copytree(pymodules_src_full_dirname, pymodules_dst_full_dirname)
+                    pymodules_init_full_filename = os.path.join(pymodules_dst_full_dirname, "__init__.py")
+                    open(pymodules_init_full_filename, "w").close()
 
+                for pymodules_dirname in [
+                    "utils"
+                ]:
+                    
+                    pymodules_src_full_dirname = os.path.join(exp_settings_pymodules_dirname, pymodules_dirname)
+                    pymodules_dst_full_dirname = os.path.join(exp_results_pymodules_dirname, pymodules_dirname)
+
+                    if not os.path.exists(pymodules_src_full_dirname):
+                        continue
+                        
                     pymodules_init_full_filename = os.path.join(pymodules_dst_full_dirname, "__init__.py")
                     open(pymodules_init_full_filename, "w").close()
 
@@ -971,12 +979,9 @@ def experiment_pipeline():
                 ]:
                     
                     pymodule_src_full_filename = os.path.join(exp_settings_pymodules_dirname, pymodule_filename)
-                    pymodule_dst_full_filename = os.path.join(exp_results_pymodules_dirname, pymodule_filename)
 
                     if not os.path.exists(pymodule_src_full_filename):
                         raise ValueError("Missing pymodules file: {:s}".format(pymodule_src_full_filename))
-
-                    shutil.copyfile(pymodule_src_full_filename, pymodule_dst_full_filename)
 
                 ## Update experiment data
 
@@ -1229,8 +1234,11 @@ def experiment_pipeline():
         data_transform_pymodule_name = "data_transforms.{:s}".format(dataset_name)
         data_transform_pymodule = importlib.import_module(data_transform_pymodule_name)
         
-        data_transform_pool["train"][dataset_name] = data_transform_pymodule.TrainDataTransform(logger)
-        data_transform_pool["eval"][dataset_name] = data_transform_pymodule.EvalDataTransform(logger)
+        data_transform_pool["train"][dataset_name] =\
+            data_transform_pymodule.instantiate_train_data_transform(logger)
+
+        data_transform_pool["eval"][dataset_name] =\
+            data_transform_pymodule.instantiate_eval_data_transform(logger)
 
 
     #
@@ -1557,14 +1565,16 @@ def experiment_pipeline():
         module_transform_pymodule_name = "module_transforms.{:s}".format(dataset_name) 
         module_transform_pymodule = importlib.import_module(module_transform_pymodule_name)
 
-        module_transform_pool[dataset_name] = module_transform_pymodule.ModuleTransform(
-            data_counter_pool,
-            device,
-            logger
-        )
+        module_transform_pool[dataset_name] =\
+            module_transform_pymodule.instantiate_module_transform(
+                data_counter_pool,
+                device,
+                logger
+            )
 
-        module_transform_loss_ten_reg_key_list_dict[dataset_name] = module_transform_pymodule.loss_ten_reg_key_list
-        
+        module_transform_loss_ten_reg_key_list_dict[dataset_name] =\
+            module_transform_pymodule.loss_ten_reg_key_list
+
 
     #
     # Build loss registers
