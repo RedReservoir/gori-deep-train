@@ -17,6 +17,7 @@ import goripy.log
 import goripy.tqdm
 import goripy.array.chunk
 import goripy.memory.info
+import goripy.gpu.info
 
 ####
 
@@ -140,7 +141,7 @@ def compute_cat_logits_probs_subprocess(
     data_transform_pymodule_name = "data_transforms.{:s}".format(dataset_name) 
     data_transform_pymodule = importlib.import_module(data_transform_pymodule_name)
 
-    data_transform = data_transform_pymodule.DataTransform(logger)
+    data_transform = data_transform_pymodule.instantiate_data_transform(logger)
     
 
     #
@@ -240,7 +241,7 @@ def compute_cat_logits_probs_subprocess(
     module_transform_pymodule_name = "module_transforms.{:s}".format(dataset_name) 
     module_transform_pymodule = importlib.import_module(module_transform_pymodule_name)
 
-    module_transform = module_transform_pymodule.ModuleTransform(
+    module_transform = module_transform_pymodule.instantiate_module_transform(
         None,
         device,
         logger
@@ -360,13 +361,7 @@ def compute_cat_logits_probs_subprocess(
     #
 
 
-    free_mem_bytes, total_mem_bytes = torch.cuda.mem_get_info(device)
-    used_mem_bytes = total_mem_bytes - free_mem_bytes
-
-    used_mem_str = goripy.memory.info.sprint_fancy_num_bytes(used_mem_bytes, unit="GiB")
-    total_mem_str = goripy.memory.info.sprint_fancy_num_bytes(total_mem_bytes, unit="GiB")
-
-    logger.info("Peak GPU memory utilization: [{:s}] / [{:s}]".format(used_mem_str, total_mem_str))    
+    logger.info(goripy.gpu.info.sprint_device_memory_usage_detail(device))     
 
 
     #
@@ -624,12 +619,12 @@ if __name__ == '__main__':
 
         logger.info("Prepare evaluation pymodules")
 
-        ## Create evaluation pymodules directory
+        ## Copy evaluation pymodules to results
 
         if os.path.exists(eval_results_pymodules_dirname): shutil.rmtree(eval_results_pymodules_dirname)
-        os.mkdir(eval_results_pymodules_dirname)
+        shutil.copytree(eval_settings_pymodules_dirname, eval_results_pymodules_dirname)
 
-        ## Copy evaluation pymodules
+        ## Check evaluation pymodules
         
         for pymodules_dirname in [
             "data_transforms",
@@ -645,8 +640,19 @@ if __name__ == '__main__':
             if not os.path.exists(pymodules_src_full_dirname):
                 raise ValueError("Missing pymodules directory: {:s}".format(settings_src_full_filename))
             
-            shutil.copytree(pymodules_src_full_dirname, pymodules_dst_full_dirname)
+            pymodules_init_full_filename = os.path.join(pymodules_dst_full_dirname, "__init__.py")
+            open(pymodules_init_full_filename, "w").close()
 
+        for pymodules_dirname in [
+            "utils"
+        ]:
+            
+            pymodules_src_full_dirname = os.path.join(eval_settings_pymodules_dirname, pymodules_dirname)
+            pymodules_dst_full_dirname = os.path.join(eval_results_pymodules_dirname, pymodules_dirname)
+
+            if not os.path.exists(pymodules_src_full_dirname):
+                continue
+            
             pymodules_init_full_filename = os.path.join(pymodules_dst_full_dirname, "__init__.py")
             open(pymodules_init_full_filename, "w").close()
 

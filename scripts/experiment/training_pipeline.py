@@ -933,7 +933,7 @@ def experiment_pipeline():
 
                 logger.info("Prepare experiment results pymodules")
 
-                ## Create experiment pymodules to results
+                ## Copy experiment pymodules to results
 
                 if os.path.exists(exp_results_pymodules_dirname): shutil.rmtree(exp_results_pymodules_dirname)
                 shutil.copytree(exp_settings_pymodules_dirname, exp_results_pymodules_dirname)
