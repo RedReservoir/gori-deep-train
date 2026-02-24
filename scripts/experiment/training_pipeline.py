@@ -1181,7 +1181,7 @@ def experiment_pipeline():
                         dataset_metadata_point = dataset_pool[dataset_name].getitem_metadata(dataset_idx)
 
                         for data_counter_name in data_counter_name_set:
-                            data_counter_pool[data_counter_name].count(dataset_metadata_point)
+                            data_counter_pool[data_counter_name].count(dataset_name, dataset_metadata_point)
             
                 # Store data counter counts
 
