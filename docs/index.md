@@ -8,4 +8,4 @@ To begin, I recommend checking the [Getting Started](getting-started.md) section
 
   - Experiment: Model training scripts. Only one training script is available.
   - Evaluation: Model evaluation scripts for computing and storing model outputs on evaluation datasets.
-  - Analysis: Model analysis scripts for computing metric and loss summaries and plots.
+  - Analysis: Model analysis scripts for computing metric and loss summaries, plots and tables.

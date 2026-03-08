@@ -16,5 +16,5 @@ Schema:
 }
 ```
 
-  - `metric_fun_name`: Metric function to use. To view possible options, check the `metric_fun_factory` method defined in the `evaluation_multiattr_plots.py` script.
+  - `metric_fun_name`: Metric function to use. To view possible options, check the `metric_fun_factory` method defined in the `evaluation_multiattr_outputs.py` script.
   - `kwargs`: Passed to the metric function.

@@ -4,6 +4,7 @@ import argparse
 import itertools
 
 import numpy
+import pandas
 
 import torch
 
@@ -65,13 +66,13 @@ def metric_fun_factory(
 
 
 
-def plot_supattr_conf_aggs(
+def create_supattr_conf_agg_plot(
     supattr_conf_aggs,
     multiattr_metadata,
     supattr_name,
     group_name,
-    pn_normalized=True,
-    plot_filename=None
+    plot_filename,
+    pn_normalized=True
 ):
 
     supattr_idx = multiattr_metadata.supattr_name_to_idx_dict[supattr_name]
@@ -155,24 +156,21 @@ def plot_supattr_conf_aggs(
 
     #
 
-    if plot_filename is None:
-        plt.show()
-    else:
-        plt.savefig(plot_filename, bbox_inches="tight")
-        plt.close()
+    plt.savefig(plot_filename, bbox_inches="tight")
+    plt.close()
 
 
 
-def plot_supattr_conf_metric(
+def create_supattr_conf_metric_plot(
     supattr_conf_aggs,
     metric_fun,
     multiattr_metadata,
     supattr_name,
     group_name,
     metric_name,
+    plot_filename,
     pn_normalized=True,
-    show_numbers=False,
-    plot_filename=None
+    show_numbers=False
 ):
 
     supattr_idx = multiattr_metadata.supattr_name_to_idx_dict[supattr_name]
@@ -269,11 +267,63 @@ def plot_supattr_conf_metric(
 
     #
 
-    if plot_filename is None:
-        plt.show()
-    else:
-        plt.savefig(plot_filename, bbox_inches="tight")
-        plt.close()
+    plt.savefig(plot_filename, bbox_inches="tight")
+    plt.close()
+
+
+
+def create_supattr_conf_metric_table(
+    group_data_dict,
+    metric_fun,
+    multiattr_metadata,
+    group_name_list,
+    table_filename,
+    average="macro",
+    pn_normalized=True
+):
+
+
+    metric_table = pandas.DataFrame({
+        supattr_name: pandas.Series(dtype="float")
+        for supattr_name in multiattr_metadata.supattr_name_list
+    })
+    
+    #
+
+    for group_name in group_name_list:
+
+        row_dict = {}
+
+        for supattr_name in multiattr_metadata.supattr_name_list:
+
+            supattr_conf_aggs = group_data_dict[group_name]["supattr_conf_aggs"][supattr_name]
+
+            if pn_normalized:
+                supattr_conf_aggs = goripy.conf.aggs.pn_normalize_conf_aggs(supattr_conf_aggs)
+            
+            metric_arr = goripy.conf.aggs.compute_conf_metric_arr(supattr_conf_aggs, metric_fun)
+            metric_avg = goripy.conf.aggs.compute_conf_metric_avg(metric_arr, supattr_conf_aggs, average)
+
+            row_dict[supattr_name] = metric_avg
+
+        #
+
+        metric_table = pandas.concat(
+            [
+                metric_table,
+                pandas.DataFrame(
+                    [row_dict],
+                    index=[group_name]
+                )
+            ],
+            axis=0
+        )
+
+    #
+
+    metric_table.to_csv(
+        table_filename
+    )
 
 
 
@@ -329,14 +379,16 @@ if __name__ == "__main__":
     ana_results_settings_dirname = os.path.join(ana_results_dirname, "settings")
     shutil.copytree(ana_settings_settings_dirname, ana_results_settings_dirname)
 
-    ana_data_dirname = os.path.join(ana_results_dirname, "data")
-    os.mkdir(ana_data_dirname)
+    ana_outputs_dirname = os.path.join(ana_results_dirname, "outputs")
+    os.mkdir(ana_outputs_dirname)
 
-    multiattr_conf_aggs_plots_dirname = os.path.join(ana_data_dirname, "multiattr_conf_aggs_plots")
-    multiattr_conf_metric_plots_dirname = os.path.join(ana_data_dirname, "multiattr_conf_metric_plots")
+    multiattr_conf_agg_plots_dirname = os.path.join(ana_outputs_dirname, "multiattr_conf_agg_plots")
+    multiattr_conf_metric_plots_dirname = os.path.join(ana_outputs_dirname, "multiattr_conf_metric_plots")
+    multiattr_conf_metric_tables_dirname = os.path.join(ana_outputs_dirname, "multiattr_conf_metric_tables")
 
-    os.mkdir(multiattr_conf_aggs_plots_dirname)
+    os.mkdir(multiattr_conf_agg_plots_dirname)
     os.mkdir(multiattr_conf_metric_plots_dirname)
+    os.mkdir(multiattr_conf_metric_tables_dirname)
 
 
     #
@@ -352,8 +404,8 @@ if __name__ == "__main__":
         ana_results_settings_dirname, "groups.json"
     ))
 
-    ana_plots_settings = goripy.file.json.load_json(os.path.join(
-        ana_results_settings_dirname, "plots.json"
+    ana_outputs_settings = goripy.file.json.load_json(os.path.join(
+        ana_results_settings_dirname, "outputs.json"
     ))
 
 
@@ -509,7 +561,7 @@ if __name__ == "__main__":
 
 
     #
-    # Pre-compute plot data
+    # Pre-compute outpu data
     #
 
 
@@ -558,55 +610,83 @@ if __name__ == "__main__":
 
 
     #
-    # Create plots
+    # Create outputs
     #
 
 
     # Category confusion aggregate plots
 
-    for plot_config in ana_plots_settings["multiattr_conf_aggs"]:
+    for output_config in ana_outputs_settings.get("multiattr_conf_agg_plots", []):
 
-        for group_name in plot_config["group_names"]:
+        for group_name in output_config["group_names"]:
 
             for supattr_name in multiattr_metadata.supattr_name_list:
 
                 plot_name = group_name + "___" + supattr_name
-                if plot_config["pn_normalized"]: plot_name += "___pn_norm"
-                plot_filename = os.path.join(multiattr_conf_aggs_plots_dirname, plot_name + ".jpg")
+                if output_config["pn_normalized"]: plot_name += "___pn_norm"
+                plot_filename = os.path.join(multiattr_conf_agg_plots_dirname, plot_name + ".jpg")
 
-                plot_supattr_conf_aggs(
+                create_supattr_conf_agg_plot(
                     group_data_dict[group_name]["supattr_conf_aggs"][supattr_name],
                     multiattr_metadata,
                     supattr_name,
                     group_name,
-                    pn_normalized=plot_config["pn_normalized"],
-                    plot_filename=plot_filename
+                    plot_filename,
+                    pn_normalized=output_config["pn_normalized"]
                 )
 
     # Category confusion metric plots
 
-    for plot_config in ana_plots_settings["multiattr_conf_metric"]:
+    for output_config in ana_outputs_settings.get("multiattr_conf_metric_plots", []):
 
         for group_name, metric_name in itertools.product(
-            plot_config["group_names"],
-            plot_config["metric_names"]
+            output_config["group_names"],
+            output_config["metric_names"]
         ):
             
             for supattr_name in multiattr_metadata.supattr_name_list:
 
                 plot_name = group_name + "___" + metric_name + "___" + supattr_name
-                if plot_config["pn_normalized"]: plot_name += "___pn_norm"
-                if plot_config["show_numbers"]: plot_name += "___nums"
+                if output_config["pn_normalized"]: plot_name += "___pn_norm"
+                if output_config["show_numbers"]: plot_name += "___nums"
                 plot_filename = os.path.join(multiattr_conf_metric_plots_dirname, plot_name + ".jpg")
 
-                plot_supattr_conf_metric(
+                create_supattr_conf_metric_plot(
                     group_data_dict[group_name]["supattr_conf_aggs"][supattr_name],
                     metric_fun_dict[metric_name],
                     multiattr_metadata,
                     supattr_name,
                     group_name,
                     metric_name,
-                    pn_normalized=plot_config["pn_normalized"],
-                    show_numbers=plot_config["show_numbers"],
-                    plot_filename=plot_filename
+                    plot_filename,
+                    pn_normalized=output_config["pn_normalized"],
+                    show_numbers=output_config["show_numbers"]
                 )
+
+    # Category confusion metric tables
+
+    for output_config in ana_outputs_settings.get("multiattr_conf_metric_tables", []):
+
+        for metric_name in output_config["metric_names"]:
+
+            table_name = ""
+            table_name += output_config.get("table_name", "default")
+            table_name += "___"
+            table_name += metric_name
+            table_name += "___"
+            table_name += "{:s}_avg".format(output_config["average"])
+            if output_config["pn_normalized"]:
+                table_name += "___"
+                table_name += "pn_norm"
+
+            table_filename = os.path.join(multiattr_conf_metric_tables_dirname, table_name + ".csv")
+
+            create_supattr_conf_metric_table(
+                group_data_dict,
+                metric_fun_dict[metric_name],
+                multiattr_metadata,
+                output_config["group_names"],
+                table_filename,
+                average=output_config["average"],
+                pn_normalized=output_config["pn_normalized"]
+            )
